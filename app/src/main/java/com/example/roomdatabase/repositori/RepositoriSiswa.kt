@@ -10,7 +10,7 @@ interface RepositoriSiswa {
     suspend fun  insertSiswa(Siswa: Siswa)
 }
 
-class OfflineReportSiswa(
+class OfflineRepositoriSiswa(
     private val SiswaDao: SiswaDao
 ): RepositoriSiswa {
     override fun getAllSiswaStream(): Flow<List<Siswa>> = SiswaDao
