@@ -1,15 +1,18 @@
 package com.example.roomdatabase.viewmodel
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.roomdatabase.repositori.RepositoriSiswa
+import com.example.roomdatabase.room.Siswa
 
 class EntryViewModel(private val repositoriSiswa: RepositoriSiswa): ViewModel() {
     var uiStateSiswa by mutableStateOf(UIStateSiswa())
 
     private fun validasiInput(uiState: DetailSiswa = uiStateSiswa.detailSiswa): Boolean{
         return with(uiState){
-            nama.isNotBlank() && alamat.isNotBlank() && telpon.isNotBlank()
+            nama.isNotBlank() && alamat.isNotBlank() && telepon.isNotBlank()
         }
     }
     fun updateUiState(detailSiswa: DetailSiswa){
@@ -24,7 +27,7 @@ class EntryViewModel(private val repositoriSiswa: RepositoriSiswa): ViewModel() 
             }
         }
     }
-data class uiStateSiswa(
+data class UIStateSiswa(
     val detailSiswa: DetailSiswa = DetailSiswa(),
     val isEntryValid: Boolean = false
 )
@@ -33,14 +36,23 @@ data class DetailSiswa(
     val id: Int = 0,
     val nama: String ="",
     val alamat: String = "",
-    val telpon: String = "",
+    val telepon: String = "",
 )
 fun DetailSiswa.toSiswa(): Siswa = Siswa(
     id = id,
     nama = nama,
     alamat = alamat,
-    telpon = telpon
+    telepon = telepon
+)
+fun Siswa.toUiStateSiswa(isEntryValid: Boolean = false)
+        : UIStateSiswa = UIStateSiswa(
+    detailSiswa = this.toDetailSiswa(),
+    isEntryValid = isEntryValid
 )
 
-
-}
+fun Siswa.toDetailSiswa(): DetailSiswa = DetailSiswa(
+    id = id,
+    nama = nama,
+    alamat = alamat,
+    telepon = telepon
+)
