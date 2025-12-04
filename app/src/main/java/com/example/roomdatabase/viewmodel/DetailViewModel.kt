@@ -1,13 +1,10 @@
-package com.example.roomdatabase.viewmodel.provider
+package com.example.roomdatabase.viewmodel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.roomdatabase.repositori.RepositoriSiswa
 import com.example.roomdatabase.view.route.DestinasiDetailSiswa
-import com.example.roomdatabase.viewmodel.DetailSiswa
-import com.example.roomdatabase.viewmodel.toDetailSiswa
-import com.example.roomdatabase.viewmodel.toSiswa
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filterNotNull
